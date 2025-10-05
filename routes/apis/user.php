@@ -28,6 +28,15 @@ Route::middleware(['web'])->group(function(){
 
 });
 
+// focus here 
+// the redirect url in dotenv must be same as the endpoint of handleGoogleCallback. 
+// in other words, the api here must be same as here.
+
+
+
+
+
+
 
 
 
