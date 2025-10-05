@@ -874,6 +874,61 @@
                     }
                 }
             }
+        },
+        "/api/user/google/redirect": {
+            "get": {
+                "tags": [
+                    "Authentication",
+                    "Google OAuth"
+                ],
+                "summary": "Get Google OAuth Redirect URL",
+                "description": "This endpoint returns the Google OAuth authorization URL that the frontend can use to redirect users for Google Sign-In.",
+                "operationId": "redirectToGoogle",
+                "responses": {
+                    "200": {
+                        "description": "Successfully generated Google OAuth redirect URL",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "Status of the request",
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "url": {
+                                            "description": "Google OAuth authorization URL",
+                                            "type": "string",
+                                            "example": "https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=http://127.0.0.1:8000/api/auth/google/callback&scope=email+profile&response_type=code&state=random_string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error (e.g. misconfigured Google credentials)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Could not generate Google redirect URL."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -889,6 +944,14 @@
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Google OAuth",
+            "description": "Google OAuth"
         }
     ]
 }
